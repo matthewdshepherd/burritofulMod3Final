@@ -77,6 +77,31 @@ describe('mapDispatchToProps', () => {
 
         expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
+})
 
+describe('mapStateToProps', () => {
+    const mockReduxState = [{
+        id: 1,
+        name: 'Quinne',
+        ingredients: ['beans', 'lettuce', 'carnitas', 'queso fresco', 'jalapeno']
+      },
+      {
+        id: 2,
+      name: 'Rose',
+      ingredients: ['beans', 'lettuce', 'carnitas', 'queso fresco', 'jalapeno']
+    }]
 
+    it('should return an array of order objects', () => {
+        const mockStoreState = {
+            orders: mockReduxState
+          }
+
+          const expected = {
+            orders: mockReduxState
+          }
+      
+          const mappedProps = mapStateToProps(mockStoreState)
+
+          expect(mappedProps).toEqual(expected)
+    })
 })
