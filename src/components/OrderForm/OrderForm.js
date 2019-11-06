@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addOrder } from '../../apiCalls';
+import { addOrderPost } from '../../apiCalls';
+import { addOrder } from '../../actions/index'
 
 class OrderForm extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    addOrder(this.state)
+    addOrderPost(this.state)
       .then(order => this.setState({
         ideas: [...this.state.ideas, idea]
       }))
