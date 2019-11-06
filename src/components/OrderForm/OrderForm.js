@@ -4,12 +4,11 @@ import { bindActionCreators } from 'redux';
 import { addOrderPost } from '../../apiCalls';
 import { addOrder } from '../../actions/index'
 
-class OrderForm extends Component {
+export class OrderForm extends Component {
   constructor(props) {
     super();
     this.props = props;
     this.state = {
-      id: this.props.orders.length + 1,
       name: '',
       ingredients: []
     };
@@ -26,8 +25,13 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    addOrderPost(this.state)
+    const { name, ingredients } = this.state
+    const newOrder = {
+      id: this.props.orders.length + 1,
+      name,
+      ingredients
+    }
+    addOrderPost(newOrder)
       .then(order => {
         this.props.addOrder(this.props.orders, order)
       })
@@ -71,7 +75,7 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button disabled={!isEnabled} onClick={e => this.handleSubmit(e)}>
+        <button className="submit--order__button" disabled={!isEnabled} onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
