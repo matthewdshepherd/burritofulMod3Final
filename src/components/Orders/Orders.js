@@ -18,7 +18,8 @@ export class Orders extends Component {
 
 
   orders = () => {
-    this.props.orders.map(order => {
+    console.log(this.props.oprders)
+    return this.props.orders.map(order => {
       return (
         <div className="order">
           <h3>{order.name}</h3>
@@ -35,7 +36,7 @@ export class Orders extends Component {
     render() {
       return (
         <section>
-          { this.props.orders.length ? this.orders : <p>No orders yet!</p> }
+          { this.props.orders.length ? this.orders() : <p>No orders yet!</p> }
         </section>
       )
     }
