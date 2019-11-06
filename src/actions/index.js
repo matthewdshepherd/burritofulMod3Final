@@ -3,7 +3,8 @@ export const setOrders = orders => ({
   orders
 });
 
-export const addOrder = order => ({
+export const addOrder = (allOrders, order) => ({
   type: 'ADD_ORDER',
+  allOrders,
   order
 });

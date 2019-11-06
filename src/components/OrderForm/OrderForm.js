@@ -28,10 +28,10 @@ class OrderForm extends Component {
     e.preventDefault();
 
     addOrderPost(this.state)
-      .then(order => this.setState({
-        ideas: [...this.state.ideas, idea]
-      }))
-      .catch(error => this.setState({ error: error.message }))
+      .then(order => {
+        this.props.addOrder(order)
+      })
+      .catch(error => console.log(error))
 
     this.clearInputs();
   }
@@ -86,7 +86,7 @@ export const mapStateToProps = ({ orders }) => ({
 
 export const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    setOrders,
+    addOrder,
   }, dispatch)
 );
 
