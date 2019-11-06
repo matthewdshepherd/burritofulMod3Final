@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addOrder } from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
     super();
     this.props = props;
     this.state = {
+      id: this.props.orders.length + 1,
       name: '',
       ingredients: []
     };
@@ -21,6 +25,13 @@ class OrderForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    addOrder(this.state)
+      .then(order => this.setState({
+        ideas: [...this.state.ideas, idea]
+      }))
+      .catch(error => this.setState({ error: error.message }))
+
     this.clearInputs();
   }
 
@@ -67,4 +78,16 @@ class OrderForm extends Component {
   }
 }
 
-export default OrderForm;
+
+export const mapStateToProps = ({ orders }) => ({
+  orders
+});
+
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setOrders,
+  }, dispatch)
+);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
