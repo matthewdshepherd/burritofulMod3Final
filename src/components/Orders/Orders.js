@@ -18,7 +18,6 @@ export class Orders extends Component {
 
 
   orders = () => {
-    console.log(this.props.oprders)
     return this.props.orders.map(order => {
       return (
         <div className="order">
