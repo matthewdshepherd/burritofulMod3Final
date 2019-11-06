@@ -3,7 +3,7 @@ export const orders = (state = [], action) => {
     case 'SET_ORDERS':
       return action.orders;
     case 'ADD_ORDER':
-      return [...state, action.order];
+      return [...action.allOrders, action.order];
     default:
       return state;
   }

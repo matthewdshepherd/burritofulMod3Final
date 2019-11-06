@@ -29,7 +29,7 @@ class OrderForm extends Component {
 
     addOrderPost(this.state)
       .then(order => {
-        this.props.addOrder(order)
+        this.props.addOrder(this.props.orders, order)
       })
       .catch(error => console.log(error))
 
