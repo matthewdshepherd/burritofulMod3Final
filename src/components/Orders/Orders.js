@@ -53,5 +53,3 @@ export const mapDispatchToProps = dispatch => (
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Orders);
-
-// export default Orders;
