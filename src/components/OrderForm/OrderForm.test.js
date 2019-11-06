@@ -23,24 +23,60 @@ describe('OrderForm', () => {
               value: 'Wonder Woman'
             }
           }
-          wrapper.instance().this.setState({id: 1})
           wrapper.instance().handleNameChange(mockEvent);
 
           expect(wrapper.state('name')).toEqual(mockEvent.target.value);
 
     })
 
-    // it('Should be able to update state when handleIngredientChange() is called', () => {
-    //     const mockEvent = {
-    //         target: {
-    //           name: 'name',
-    //           value: 'Wonder Woman'
-    //         }
-    //       }
+    // it('Should be to run handleSubmit(e) when button is clicked', () => {
+    //     wrapper.instance().handleSubmit = jest.fn()
 
-    //       wrapper.instance().handleNameChange(mockEvent);
+    //     wrapper.find('.submit--order__button').simulate('click')
 
-    //       expect(wrapper.state('name')).toEqual(mockEvent.target.value);
+    //     expect(wrapper.instance().handleStart).toHaveBeenCalled()
 
-    // })
+    //     // const mockEvent = {
+    //     //   target: {
+    //     //     name: 'name',
+    //     //     value: 'Wonder Woman'
+    //     //   }
+    //     // }
+
+    //   })
+    
+
+ 
+})
+
+describe('mapDispatchToProps', () => { 
+    it('calls dispatch with addOrder', () => {
+        const mockDispatch = jest.fn()
+        const mockaction = jest.fn()
+        const wrapper = shallow(<OrderForm setPlayer={mockaction} />)
+        const mockReduxState = [{
+            id: 1,
+            name: 'Quinne',
+            ingredients: ['beans', 'lettuce', 'carnitas', 'queso fresco', 'jalapeno']
+          },
+          {
+            id: 2,
+          name: 'Rose',
+          ingredients: ['beans', 'lettuce', 'carnitas', 'queso fresco', 'jalapeno']
+        }]
+        const mockNewOrder =  {
+            id: 3,
+          name: 'Travis',
+          ingredients: ['beans', 'lettuce', 'carnitas', 'queso fresco', 'jalapeno']
+        }
+        const actionToDispatch = addOrder( 'ADD_ORDER', mockReduxState, mockNewOrder)
+        
+        const mappedProps = mapDispatchToProps(mockDispatch)
+
+        mappedProps.addOrder('ADD_ORDER', mockReduxState, mockNewOrder)
+
+        expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+
 })

@@ -9,7 +9,6 @@ export class OrderForm extends Component {
     super();
     this.props = props;
     this.state = {
-      // id: this.props.orders.length + 1,
       name: '',
       ingredients: []
     };
@@ -76,7 +75,7 @@ export class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button disabled={!isEnabled} onClick={e => this.handleSubmit(e)}>
+        <button className="submit--order__button" disabled={!isEnabled} onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
