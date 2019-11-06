@@ -38,6 +38,11 @@ class OrderForm extends Component {
       )
     });
 
+    canBeSubmitted() {
+      const { name, ingredients } = this.state
+      return name.length > 0 && ingredients.length > 0
+    }
+
     return (
       <form>
         <input
