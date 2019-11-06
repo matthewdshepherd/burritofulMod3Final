@@ -8,7 +8,6 @@ import { getOrders } from '../../apiCalls';
 export class Orders extends Component {
   constructor(props) {
     super();
-    // this.props = props;
   }
 
   componentDidMount() {
@@ -19,7 +18,6 @@ export class Orders extends Component {
 
 
   orders = () => {
-    // const orderEls = this.props.orders
     this.props.orders.map(order => {
       return (
         <div className="order">
